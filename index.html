@@ -1,328 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nakyoung Koo — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'DM Sans',sans-serif;background:#0e1117;color:#e8e4dc;min-height:100vh;}
-    .lang-toggle{display:flex;border-bottom:0.5px solid #2a2d35;background:#0e1117;position:sticky;top:0;z-index:10;}
-    .lt-btn{flex:1;background:none;border:none;color:#555;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
-    .lt-btn:hover{color:#ccc;}
-    .lt-btn.active{color:#1d9e75;border-bottom-color:#1d9e75;}
-    .pf-view{display:none;animation:fi .3s ease;}
-    .pf-view.active{display:block;}
-    @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-    .hero{padding:2.5rem 2rem 2rem;border-bottom:0.5px solid #1e2028;position:relative;overflow:hidden;}
-    .hero::after{content:'';position:absolute;top:-40px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(29,158,117,.1) 0%,transparent 70%);pointer-events:none;}
-    .hero-name{font-family:'DM Serif Display',serif;font-size:3rem;line-height:1.1;color:#f5f2ec;margin-bottom:.3rem;}
-    .hero-name em{font-style:italic;color:#1d9e75;}
-    .hero-tagline{font-size:.85rem;color:#888;line-height:1.7;margin:.8rem 0 1.2rem;max-width:520px;font-weight:300;}
-    .hero-tagline em{color:#b8b4ac;font-style:normal;}
-    .hero-contact{font-size:.75rem;color:#444;margin-bottom:1rem;letter-spacing:.03em;}
-    .hero-tags{display:flex;flex-wrap:wrap;gap:6px;}
-    .htag{font-size:.7rem;padding:3px 10px;border-radius:20px;border:0.5px solid #2e3038;color:#888;background:#161820;}
-    .htag.g{border-color:rgba(29,158,117,.4);color:#1d9e75;background:rgba(29,158,117,.07);}
-    .sec-nav{display:flex;border-bottom:0.5px solid #1e2028;overflow-x:auto;}
-    .sn-btn{flex:none;background:none;border:none;color:#555;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.8rem 1.2rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
-    .sn-btn:hover{color:#ccc;}
-    .sn-btn.active{color:#1d9e75;border-bottom-color:#1d9e75;}
-    .sn-btn.ko-font{font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;}
-    .sec{display:none;padding:2rem;}
-    .sec.active{display:block;}
-    .sec-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#1d9e75;margin-bottom:1.5rem;}
-    .sec-label.ko{font-family:'Noto Sans KR',sans-serif;letter-spacing:.08em;}
-    .tl-item{display:grid;grid-template-columns:100px 1fr;gap:0 1.25rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #1e2028;}
-    .tl-item:last-child{border:none;margin-bottom:0;}
-    .tl-meta{font-size:.72rem;color:#444;line-height:1.5;padding-top:3px;}
-    .tl-meta .org{color:#1d9e75;font-size:.7rem;margin-top:2px;}
-    .tl-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:#f0ede7;margin-bottom:3px;}
-    .tl-title.ko{font-family:'Noto Serif KR',serif;font-size:.95rem;}
-    .tl-sub{font-size:.8rem;color:#666;margin-bottom:.6rem;}
-    .tl-sub.ko{font-family:'Noto Sans KR',sans-serif;font-size:.78rem;}
-    .tl-bullets{list-style:none;padding:0;}
-    .tl-bullets li{font-size:.8rem;color:#888;line-height:1.65;padding-left:1rem;position:relative;margin-bottom:2px;}
-    .tl-bullets li::before{content:'—';position:absolute;left:0;color:#2e3038;}
-    .tl-bullets.ko li{font-family:'Noto Sans KR',sans-serif;font-size:.78rem;}
-    .award-badge{display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:4px;background:rgba(239,159,39,.1);border:0.5px solid rgba(239,159,39,.3);color:#ef9f27;margin-bottom:.5rem;}
-    .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
-    .skill-card{background:#13161e;border:0.5px solid #2a2d35;border-radius:10px;padding:1rem 1.1rem;transition:border-color .2s;}
-    .skill-card:hover{border-color:#1d9e75;}
-    .skill-cat{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:#444;margin-bottom:.5rem;}
-    .skill-cat.ko{font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;}
-    .skill-items{display:flex;flex-wrap:wrap;gap:5px;}
-    .skill-pill{font-size:.72rem;color:#777;background:#0e1117;border:0.5px solid #252830;padding:2px 8px;border-radius:4px;}
-    .skill-pill.ko{font-family:'Noto Sans KR',sans-serif;}
-  </style>
-</head>
-<body>
-
-  <div class="lang-toggle">
-    <button class="lt-btn active" onclick="switchLang('en',this)">English</button>
-    <button class="lt-btn" onclick="switchLang('ko',this)">한국어</button>
-  </div>
-
-  <!-- ───────── ENGLISH ───────── -->
-  <div class="pf-view active" id="view-en">
-    <div class="hero">
-      <div class="hero-name">Nakyoung<em> Koo</em></div>
-      <div class="hero-contact">nakyoungkoo9@gmail.com</div>
-      <div class="hero-tagline">
-        Environmental certification professional with hands-on experience in global standards verification —
-        combining <em>international fieldwork</em> with an
-        <em>AI Education</em> background to drive evidence-based sustainability solutions.
-      </div>
-      <div class="hero-tags">
-        <span class="htag g">Environmental Engineering</span>
-        <span class="htag g">AI Education</span>
-        <span class="htag">International Cooperation</span>
-        <span class="htag">Critical Minerals</span>
-        <span class="htag">Certification &amp; Verification</span>
-      </div>
-    </div>
-    <nav class="sec-nav">
-      <button class="sn-btn active" onclick="showSec('en','exp',this)">Experience</button>
-      <button class="sn-btn" onclick="showSec('en','edu',this)">Education</button>
-      <button class="sn-btn" onclick="showSec('en','awards',this)">Activities</button>
-      <button class="sn-btn" onclick="showSec('en','skills',this)">Skills</button>
-    </nav>
-
-    <div class="sec active" id="en-exp">
-      <div class="sec-label">Work Experience</div>
-      <div class="tl-item">
-        <div class="tl-meta">Sep 2024<br>– Present<div class="org">UL Solutions</div></div>
-        <div>
-          <div class="tl-title">Environmental Project Handler</div>
-          <div class="tl-sub">Retail &amp; Consumer Products Division · Korea</div>
-          <ul class="tl-bullets">
-            <li>Validated 150+ ECV certificates assessing supply chains for recycled content per UL 2809 &amp; ISO 14021.</li>
-            <li>Evaluated waste management systems against UL 2799, certifying facilities with Zero Waste to Landfill ratings (Platinum / Gold / Silver).</li>
-            <li>Verified recycled content for paper-based products per UL 2485 via material traceability audits.</li>
-            <li>Monitored evolving global regulations for forward-looking risk management in certification audits.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-meta">Aug 2023<br>– Feb 2024<div class="org">CCOP</div></div>
-        <div>
-          <div class="tl-title">International Organization Intern</div>
-          <div class="tl-sub">Project Operation &amp; Information Division · Bangkok, Thailand</div>
-          <ul class="tl-bullets">
-            <li>Facilitated geoscience workshops for delegates advancing regional SDGs and resource management.</li>
-            <li>Managed geological publications and digital abstracts supporting organizational Digital Transformation.</li>
-            <li>Collaborated on multinational projects with Thai stakeholders and government delegates from member countries.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-meta">Jul – Aug<br>2022<div class="org">Daegu City</div></div>
-        <div>
-          <div class="tl-title">Environmental Policy Intern</div>
-          <div class="tl-sub">Daegu Metropolitan City Hall · Environmental Policy Division</div>
-          <ul class="tl-bullets">
-            <li>Researched environmental regulations to provide project compliance context.</li>
-            <li>Managed registrations and data updates for environmental agencies.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="sec" id="en-edu">
-      <div class="sec-label">Education</div>
-      <div class="tl-item">
-        <div class="tl-meta">Mar 2023<br>– Feb 2026<div class="org">DNUE</div></div>
-        <div>
-          <div class="tl-title">Master of Artificial Intelligence Education (MEd)</div>
-          <div class="tl-sub">Daegu National University of Education</div>
-          <ul class="tl-bullets">
-            <li>Analyzed UNESCO AI Competency Framework against Korea's 2022 National Curriculum for AI literacy insights.</li>
-            <li>Investigated pedagogical applications of Generative AI across diverse educational settings.</li>
-            <li>Developed competencies in data analysis and AI-based programming methodologies.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-meta">Mar 2017<br>– Aug 2022<div class="org">Yeungnam Univ.</div></div>
-        <div>
-          <div class="tl-title">Bachelor of Environmental Engineering</div>
-          <div class="tl-sub">Yeungnam University</div>
-          <ul class="tl-bullets">
-            <li>Expertise in Water, Air, and Soil engineering — pollution control and environmental chemistry.</li>
-            <li>Life Cycle Assessment (LCA) for cradle-to-grave impact analysis and carbon hotspot identification.</li>
-            <li>Environmental statistics and quantitative analysis methods.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="sec" id="en-awards">
-      <div class="sec-label">Activities &amp; Awards</div>
-      <div class="tl-item">
-        <div class="tl-meta">2025<div class="org">KNDA</div></div>
-        <div>
-          <div class="tl-title">Korea National Diplomatic Academy</div>
-          <div class="tl-sub">Public Diplomacy Academy — Future Leaders Program</div>
-          <span class="award-badge">🏆 Creative Innovation Award</span>
-          <ul class="tl-bullets">
-            <li>Selective program for next-generation leaders in diplomacy and international cooperation.</li>
-            <li>Authored team research paper; received Creative Innovation Award among participating teams.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="sec" id="en-skills">
-      <div class="sec-label">Skills &amp; Competencies</div>
-      <div class="skill-grid">
-        <div class="skill-card"><div class="skill-cat">Certification Standards</div><div class="skill-items"><span class="skill-pill">UL 2809</span><span class="skill-pill">UL 2799</span><span class="skill-pill">UL 2485</span><span class="skill-pill">ISO 14021</span></div></div>
-        <div class="skill-card"><div class="skill-cat">Environmental</div><div class="skill-items"><span class="skill-pill">LCA</span><span class="skill-pill">Supply Chain Audit</span><span class="skill-pill">Circular Economy</span><span class="skill-pill">Zero Waste</span></div></div>
-        <div class="skill-card"><div class="skill-cat">AI &amp; Education</div><div class="skill-items"><span class="skill-pill">Generative AI</span><span class="skill-pill">AI Curriculum</span><span class="skill-pill">UNESCO Framework</span><span class="skill-pill">Data Analysis</span></div></div>
-        <div class="skill-card"><div class="skill-cat">International</div><div class="skill-items"><span class="skill-pill">Multilateral Projects</span><span class="skill-pill">SDGs</span><span class="skill-pill">Critical Minerals</span><span class="skill-pill">Workshop Facilitation</span></div></div>
-        <div class="skill-card"><div class="skill-cat">Languages</div><div class="skill-items"><span class="skill-pill">Korean (Native)</span><span class="skill-pill">English (Professional)</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ───────── 한국어 ───────── -->
-  <div class="pf-view" id="view-ko">
-    <div class="hero">
-      <div class="hero-name"><em>구</em>나경</div>
-      <div class="hero-contact">nakyoungkoo9@gmail.com</div>
-      <div class="hero-tagline" style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;">
-        글로벌 환경 인증 실무 전문가 —
-        <em>국제 현장 경험</em>과
-        <em>AI 교육학 석사</em> 배경을 바탕으로
-        데이터 기반 지속가능성 솔루션을 추구합니다.
-      </div>
-      <div class="hero-tags">
-        <span class="htag g">환경공학</span>
-        <span class="htag g">AI 교육</span>
-        <span class="htag">국제 협력</span>
-        <span class="htag">핵심광물</span>
-        <span class="htag">인증 &amp; 검증</span>
-      </div>
-    </div>
-    <nav class="sec-nav">
-      <button class="sn-btn ko-font active" onclick="showSec('ko','exp',this)">경력</button>
-      <button class="sn-btn ko-font" onclick="showSec('ko','edu',this)">학력</button>
-      <button class="sn-btn ko-font" onclick="showSec('ko','awards',this)">활동 &amp; 수상</button>
-      <button class="sn-btn ko-font" onclick="showSec('ko','skills',this)">역량</button>
-    </nav>
-
-    <div class="sec active" id="ko-exp">
-      <div class="sec-label ko">경력 사항</div>
-      <div class="tl-item">
-        <div class="tl-meta">2024.09<br>– 현재<div class="org">UL Solutions</div></div>
-        <div>
-          <div class="tl-title ko">환경 프로젝트 담당자</div>
-          <div class="tl-sub ko">소매·소비재 사업부 · 한국</div>
-          <ul class="tl-bullets ko">
-            <li>UL 2809 및 ISO 14021 기준에 따라 공급망 전반을 심사하여 150건 이상의 환경 주장 검증(ECV) 인증서 발급·검토.</li>
-            <li>UL 2799 기준에 따라 기업 폐기물 관리 시스템을 평가하고 제로 웨이스트 매립지 등급(플래티넘/골드/실버) 인증.</li>
-            <li>UL 2485 기준에 따라 종이 기반 제품의 재활용 원료 함량을 소재 이력 추적 감사로 검증.</li>
-            <li>글로벌 규제 동향 분석을 통한 선제적 리스크 관리 수행.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-meta">2023.08<br>– 2024.02<div class="org">CCOP</div></div>
-        <div>
-          <div class="tl-title ko">국제기구 인턴</div>
-          <div class="tl-sub ko">사업운영·정보부 · 방콕, 태국</div>
-          <ul class="tl-bullets ko">
-            <li>지역 SDGs 달성 및 자원 관리 촉진을 위한 지구과학 워크숍 진행 지원.</li>
-            <li>지질 자료 및 디지털 초록 관리로 기관 디지털 전환 목표 기여.</li>
-            <li>태국 현지 이해관계자 및 다국가 정부 대표단과 다국적 프로젝트 협업.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-meta">2022.07<br>– 2022.08<div class="org">대구시청</div></div>
-        <div>
-          <div class="tl-title ko">환경 정책 인턴</div>
-          <div class="tl-sub ko">대구광역시청 환경정책과</div>
-          <ul class="tl-bullets ko">
-            <li>프로젝트 법규 준수를 위한 환경 관련 규정 조사·분석.</li>
-            <li>환경 관련 기관 등록 및 시스템 데이터 관리.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="sec" id="ko-edu">
-      <div class="sec-label ko">학력 사항</div>
-      <div class="tl-item">
-        <div class="tl-meta">2023.03<br>– 2026.02<div class="org">대구교육대학교</div></div>
-        <div>
-          <div class="tl-title ko">인공지능교육 석사 (MEd)</div>
-          <div class="tl-sub ko">대구교육대학교 대학원</div>
-          <ul class="tl-bullets ko">
-            <li>UNESCO AI 역량 프레임워크와 2022 개정 교육과정 비교 분석으로 국가 AI 리터러시 개선 방안 도출.</li>
-            <li>다양한 교육 환경에서 생성형 AI의 교육학적 적용 및 시사점 연구.</li>
-            <li>데이터 분석 및 AI 기반 프로그래밍 방법론 역량 개발.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-meta">2017.03<br>– 2022.08<div class="org">영남대학교</div></div>
-        <div>
-          <div class="tl-title ko">환경공학 학사</div>
-          <div class="tl-sub ko">영남대학교 공과대학</div>
-          <ul class="tl-bullets ko">
-            <li>수질·대기·토양 공학 전반과 오염 제어 시스템 및 환경 화학 전문 지식 습득.</li>
-            <li>전과정 평가(LCA)를 활용한 탄소 핫스팟 파악 및 전략적 배출 저감 방안 도출.</li>
-            <li>환경 통계 및 정량적 분석 방법론 이수.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="sec" id="ko-awards">
-      <div class="sec-label ko">활동 &amp; 수상</div>
-      <div class="tl-item">
-        <div class="tl-meta">2025<div class="org">국립외교원</div></div>
-        <div>
-          <div class="tl-title ko">국립외교원 국민외교아카데미</div>
-          <div class="tl-sub ko">미래지도자과정 수료</div>
-          <span class="award-badge">🏆 창의혁신부문 수상</span>
-          <ul class="tl-bullets ko">
-            <li>외교·국제협력 분야 차세대 리더 양성을 위한 선발형 교육 프로그램.</li>
-            <li>팀별 논문 작성 참여, 창의혁신부문 수상.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="sec" id="ko-skills">
-      <div class="sec-label ko">핵심 역량</div>
-      <div class="skill-grid">
-        <div class="skill-card"><div class="skill-cat ko">인증 기준</div><div class="skill-items"><span class="skill-pill ko">UL 2809</span><span class="skill-pill ko">UL 2799</span><span class="skill-pill ko">UL 2485</span><span class="skill-pill ko">ISO 14021</span></div></div>
-        <div class="skill-card"><div class="skill-cat ko">환경 분야</div><div class="skill-items"><span class="skill-pill ko">전과정 평가(LCA)</span><span class="skill-pill ko">공급망 감사</span><span class="skill-pill ko">순환경제</span><span class="skill-pill ko">제로 웨이스트</span></div></div>
-        <div class="skill-card"><div class="skill-cat ko">AI·교육</div><div class="skill-items"><span class="skill-pill ko">생성형 AI</span><span class="skill-pill ko">AI 교육과정</span><span class="skill-pill ko">UNESCO 프레임워크</span><span class="skill-pill ko">데이터 분석</span></div></div>
-        <div class="skill-card"><div class="skill-cat ko">국제 협력</div><div class="skill-items"><span class="skill-pill ko">다국적 프로젝트</span><span class="skill-pill ko">SDGs</span><span class="skill-pill ko">핵심광물</span><span class="skill-pill ko">워크숍 진행</span></div></div>
-        <div class="skill-card"><div class="skill-cat ko">언어</div><div class="skill-items"><span class="skill-pill ko">한국어 (원어민)</span><span class="skill-pill ko">영어 (업무 수준)</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function switchLang(lang,btn){
-      document.querySelectorAll('.pf-view').forEach(v=>v.classList.remove('active'));
-      document.querySelectorAll('.lt-btn').forEach(b=>b.classList.remove('active'));
-      document.getElementById('view-'+lang).classList.add('active');
-      btn.classList.add('active');
-    }
-    function showSec(lang,sec,btn){
-      const view=document.getElementById('view-'+lang);
-      view.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
-      view.querySelectorAll('.sn-btn').forEach(b=>b.classList.remove('active'));
-      document.getElementById(lang+'-'+sec).classList.add('active');
-      btn.classList.add('active');
-    }
-  </script>
-</body>
-</html>
+English
+한국어
+Nakyoung Koo
+nakyoungkoo9@gmail.com
+Environmental certification professional with hands-on experience in global standards verification — combining international fieldwork with an AI Education background to drive evidence-based sustainability solutions.
+Environmental Engineering
+AI Education
+International Cooperation
+Critical Minerals
+Certification & Verification
+Experience
+Education
+Activities
+Skills
+Work Experience
+Sep 2024
+– Present
+UL Solutions
+Environmental Project Handler
+Retail & Consumer Products Division · Korea
+Validated 150+ ECV certificates assessing supply chains for recycled content per UL 2809 & ISO 14021.
+Evaluated waste management systems against UL 2799, certifying facilities with Zero Waste to Landfill ratings (Platinum / Gold / Silver).
+Verified recycled content for paper-based products per UL 2485 via material traceability audits.
+Monitored evolving global regulations for forward-looking risk management in certification audits.
+Aug 2023
+– Feb 2024
+CCOP
+International Organization Intern
+Project Operation & Information Division · Bangkok, Thailand
+Supported the organization and delivery of geoscience workshops and events, contributing to regional SDGs and resource management agendas.
+Compiled and managed abstracts for CCOP's annual geoscience publications, supporting knowledge documentation and information management.
+Attended meetings on the Groundwater Workshop and GDR digital transformation initiative, gaining exposure to regional water resource and critical minerals cooperation.
+Collaborated on multinational projects with Thai stakeholders and government delegates from member countries.
+Jul – Aug
+2022
+Daegu City
+Environmental Policy Intern
+Daegu Metropolitan City Hall · Environmental Policy Division
+Researched environmental regulations to provide project compliance context.
+Managed registrations and data updates for environmental agencies.
