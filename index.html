@@ -1,58 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nakyoung Koo — Portfolio</title>
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0;}
-  .pf{font-family:'DM Sans',sans-serif;background:#0e1117;color:#e8e4dc;min-height:100vh;}
-  .lang-toggle{display:flex;border-bottom:0.5px solid #2a2d35;background:#0e1117;position:sticky;top:0;z-index:10;}
-  .lt-btn{flex:1;background:none;border:none;color:#555;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
-  .lt-btn:hover{color:#ccc;}
-  .lt-btn.active{color:#1d9e75;border-bottom-color:#1d9e75;}
-  .pf-view{display:none;animation:fi .3s ease;}
-  .pf-view.active{display:block;}
-  @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-  .hero{padding:2.5rem 2rem 2rem;border-bottom:0.5px solid #1e2028;position:relative;overflow:hidden;}
-  .hero::after{content:'';position:absolute;top:-40px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(29,158,117,.1) 0%,transparent 70%);pointer-events:none;}
-  .hero-name{font-family:'DM Serif Display',serif;font-size:3rem;line-height:1.1;color:#f5f2ec;margin-bottom:.3rem;}
-  .hero-name em{font-style:italic;color:#1d9e75;}
-  .hero-tagline{font-size:.85rem;color:#888;line-height:1.7;margin:.8rem 0 1.2rem;max-width:520px;font-weight:300;}
-  .hero-tagline em{color:#b8b4ac;font-style:normal;}
-  .hero-contact{font-size:.75rem;color:#444;margin-bottom:1rem;letter-spacing:.03em;}
-  .hero-tags{display:flex;flex-wrap:wrap;gap:6px;}
-  .htag{font-size:.7rem;padding:3px 10px;border-radius:20px;border:0.5px solid #2e3038;color:#888;background:#161820;}
-  .htag.g{border-color:rgba(29,158,117,.4);color:#1d9e75;background:rgba(29,158,117,.07);}
-  .sec-nav{display:flex;border-bottom:0.5px solid #1e2028;overflow-x:auto;}
-  .sn-btn{flex:none;background:none;border:none;color:#555;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.8rem 1.2rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
-  .sn-btn:hover{color:#ccc;}
-  .sn-btn.active{color:#1d9e75;border-bottom-color:#1d9e75;}
-  .sn-btn.ko-font{font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;}
-  .sec{display:none;padding:2rem;}
-  .sec.active{display:block;}
-  .sec-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#1d9e75;margin-bottom:1.5rem;}
-  .sec-label.ko{font-family:'Noto Sans KR',sans-serif;letter-spacing:.08em;}
-  .tl-item{display:grid;grid-template-columns:100px 1fr;gap:0 1.25rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #1e2028;}
-  .tl-item:last-child{border:none;margin-bottom:0;}
-  .tl-meta{font-size:.72rem;color:#444;line-height:1.5;padding-top:3px;}
-  .tl-meta .org{color:#1d9e75;font-size:.7rem;margin-top:2px;}
-  .tl-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:#f0ede7;margin-bottom:3px;}
-  .tl-title.ko{font-family:'Noto Serif KR',serif;font-size:.95rem;}
-  .tl-sub{font-size:.8rem;color:#666;margin-bottom:.6rem;}
-  .tl-sub.ko{font-family:'Noto Sans KR',sans-serif;font-size:.78rem;}
-  .tl-bullets{list-style:none;padding:0;}
-  .tl-bullets li{font-size:.8rem;color:#888;line-height:1.65;padding-left:1rem;position:relative;margin-bottom:2px;}
-  .tl-bullets li::before{content:'—';position:absolute;left:0;color:#2e3038;}
-  .tl-bullets.ko li{font-family:'Noto Sans KR',sans-serif;font-size:.78rem;}
-  .award-badge{display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:4px;background:rgba(239,159,39,.1);border:0.5px solid rgba(239,159,39,.3);color:#ef9f27;margin-bottom:.5rem;}
-  .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
-  .skill-card{background:#13161e;border:0.5px solid #2a2d35;border-radius:10px;padding:1rem 1.1rem;transition:border-color .2s;}
-  .skill-card:hover{border-color:#1d9e75;}
-  .skill-cat{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:#444;margin-bottom:.5rem;}
-  .skill-cat.ko{font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;}
-  .skill-items{display:flex;flex-wrap:wrap;gap:5px;}
-  .skill-pill{font-size:.72rem;color:#777;background:#0e1117;border:0.5px solid #252830;padding:2px 8px;border-radius:4px;}
-  .skill-pill.ko{font-family:'Noto Sans KR',sans-serif;}
-</style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B0911FJPK7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B0911FJPK7');
+  </script>
 
-<div class="pf">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:#0e1117;color:#e8e4dc;min-height:100vh;}
+    .lang-toggle{display:flex;border-bottom:0.5px solid #2a2d35;background:#0e1117;position:sticky;top:0;z-index:10;}
+    .lt-btn{flex:1;background:none;border:none;color:#555;font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:.9rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+    .lt-btn:hover{color:#ccc;}
+    .lt-btn.active{color:#1d9e75;border-bottom-color:#1d9e75;}
+    .pf-view{display:none;animation:fi .3s ease;}
+    .pf-view.active{display:block;}
+    @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+    .hero{padding:2.5rem 2rem 2rem;border-bottom:0.5px solid #1e2028;position:relative;overflow:hidden;}
+    .hero::after{content:'';position:absolute;top:-40px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(29,158,117,.1) 0%,transparent 70%);pointer-events:none;}
+    .hero-name{font-family:'DM Serif Display',serif;font-size:3rem;line-height:1.1;color:#f5f2ec;margin-bottom:.3rem;}
+    .hero-name em{font-style:italic;color:#1d9e75;}
+    .hero-tagline{font-size:.85rem;color:#888;line-height:1.7;margin:.8rem 0 1.2rem;max-width:520px;font-weight:300;}
+    .hero-tagline em{color:#b8b4ac;font-style:normal;}
+    .hero-contact{font-size:.75rem;color:#444;margin-bottom:1rem;letter-spacing:.03em;}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .htag{font-size:.7rem;padding:3px 10px;border-radius:20px;border:0.5px solid #2e3038;color:#888;background:#161820;}
+    .htag.g{border-color:rgba(29,158,117,.4);color:#1d9e75;background:rgba(29,158,117,.07);}
+    .sec-nav{display:flex;border-bottom:0.5px solid #1e2028;overflow-x:auto;}
+    .sn-btn{flex:none;background:none;border:none;color:#555;font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.8rem 1.2rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+    .sn-btn:hover{color:#ccc;}
+    .sn-btn.active{color:#1d9e75;border-bottom-color:#1d9e75;}
+    .sn-btn.ko-font{font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;}
+    .sec{display:none;padding:2rem;}
+    .sec.active{display:block;}
+    .sec-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.15em;color:#1d9e75;margin-bottom:1.5rem;}
+    .sec-label.ko{font-family:'Noto Sans KR',sans-serif;letter-spacing:.08em;}
+    .tl-item{display:grid;grid-template-columns:100px 1fr;gap:0 1.25rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:0.5px solid #1e2028;}
+    .tl-item:last-child{border:none;margin-bottom:0;}
+    .tl-meta{font-size:.72rem;color:#444;line-height:1.5;padding-top:3px;}
+    .tl-meta .org{color:#1d9e75;font-size:.7rem;margin-top:2px;}
+    .tl-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:#f0ede7;margin-bottom:3px;}
+    .tl-title.ko{font-family:'Noto Serif KR',serif;font-size:.95rem;}
+    .tl-sub{font-size:.8rem;color:#666;margin-bottom:.6rem;}
+    .tl-sub.ko{font-family:'Noto Sans KR',sans-serif;font-size:.78rem;}
+    .tl-bullets{list-style:none;padding:0;}
+    .tl-bullets li{font-size:.8rem;color:#888;line-height:1.65;padding-left:1rem;position:relative;margin-bottom:2px;}
+    .tl-bullets li::before{content:'—';position:absolute;left:0;color:#2e3038;}
+    .tl-bullets.ko li{font-family:'Noto Sans KR',sans-serif;font-size:.78rem;}
+    .award-badge{display:inline-block;font-size:.68rem;padding:2px 8px;border-radius:4px;background:rgba(239,159,39,.1);border:0.5px solid rgba(239,159,39,.3);color:#ef9f27;margin-bottom:.5rem;}
+    .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+    .skill-card{background:#13161e;border:0.5px solid #2a2d35;border-radius:10px;padding:1rem 1.1rem;transition:border-color .2s;}
+    .skill-card:hover{border-color:#1d9e75;}
+    .skill-cat{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:#444;margin-bottom:.5rem;}
+    .skill-cat.ko{font-family:'Noto Sans KR',sans-serif;letter-spacing:.04em;}
+    .skill-items{display:flex;flex-wrap:wrap;gap:5px;}
+    .skill-pill{font-size:.72rem;color:#777;background:#0e1117;border:0.5px solid #252830;padding:2px 8px;border-radius:4px;}
+    .skill-pill.ko{font-family:'Noto Sans KR',sans-serif;}
+  </style>
+</head>
+<body>
+
   <div class="lang-toggle">
     <button class="lt-btn active" onclick="switchLang('en',this)">English</button>
     <button class="lt-btn" onclick="switchLang('ko',this)">한국어</button>
@@ -82,6 +100,7 @@
       <button class="sn-btn" onclick="showSec('en','awards',this)">Activities</button>
       <button class="sn-btn" onclick="showSec('en','skills',this)">Skills</button>
     </nav>
+
     <div class="sec active" id="en-exp">
       <div class="sec-label">Work Experience</div>
       <div class="tl-item">
@@ -122,6 +141,7 @@
         </div>
       </div>
     </div>
+
     <div class="sec" id="en-edu">
       <div class="sec-label">Education</div>
       <div class="tl-item">
@@ -149,6 +169,7 @@
         </div>
       </div>
     </div>
+
     <div class="sec" id="en-awards">
       <div class="sec-label">Activities &amp; Awards</div>
       <div class="tl-item">
@@ -164,6 +185,7 @@
         </div>
       </div>
     </div>
+
     <div class="sec" id="en-skills">
       <div class="sec-label">Skills &amp; Competencies</div>
       <div class="skill-grid">
@@ -183,9 +205,8 @@
       <div class="hero-contact">nakyoungkoo9@gmail.com</div>
       <div class="hero-tagline" style="font-family:'Noto Sans KR',sans-serif;font-size:.82rem;">
         글로벌 환경 인증 실무 전문가 —
-        <em>국제 현장 경험</em>과
-        <em>AI 교육학 석사</em> 배경을 바탕으로
-        데이터 기반 지속가능성 솔루션을 추구합니다.
+        <em>국제 현장 경험</em>과 <em>AI 교육</em> 배경을 결합하여
+        근거 중심의 지속가능성 솔루션을 실현합니다.
       </div>
       <div class="hero-tags">
         <span class="htag g">환경공학</span>
@@ -201,6 +222,7 @@
       <button class="sn-btn ko-font" onclick="showSec('ko','awards',this)">활동 &amp; 수상</button>
       <button class="sn-btn ko-font" onclick="showSec('ko','skills',this)">역량</button>
     </nav>
+
     <div class="sec active" id="ko-exp">
       <div class="sec-label ko">경력 사항</div>
       <div class="tl-item">
@@ -241,6 +263,7 @@
         </div>
       </div>
     </div>
+
     <div class="sec" id="ko-edu">
       <div class="sec-label ko">학력 사항</div>
       <div class="tl-item">
@@ -268,6 +291,7 @@
         </div>
       </div>
     </div>
+
     <div class="sec" id="ko-awards">
       <div class="sec-label ko">활동 &amp; 수상</div>
       <div class="tl-item">
@@ -283,6 +307,7 @@
         </div>
       </div>
     </div>
+
     <div class="sec" id="ko-skills">
       <div class="sec-label ko">핵심 역량</div>
       <div class="skill-grid">
@@ -294,20 +319,21 @@
       </div>
     </div>
   </div>
-</div>
 
-<script>
-function switchLang(lang,btn){
-  document.querySelectorAll('.pf-view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.lt-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('view-'+lang).classList.add('active');
-  btn.classList.add('active');
-}
-function showSec(lang,sec,btn){
-  const view=document.getElementById('view-'+lang);
-  view.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
-  view.querySelectorAll('.sn-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(lang+'-'+sec).classList.add('active');
-  btn.classList.add('active');
-}
-</script>
+  <script>
+    function switchLang(lang,btn){
+      document.querySelectorAll('.pf-view').forEach(v=>v.classList.remove('active'));
+      document.querySelectorAll('.lt-btn').forEach(b=>b.classList.remove('active'));
+      document.getElementById('view-'+lang).classList.add('active');
+      btn.classList.add('active');
+    }
+    function showSec(lang,sec,btn){
+      const view=document.getElementById('view-'+lang);
+      view.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+      view.querySelectorAll('.sn-btn').forEach(b=>b.classList.remove('active'));
+      document.getElementById(lang+'-'+sec).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
